@@ -1,10 +1,10 @@
-package leshen.org.MPR5.Service;
+package leshen.org.MPR5.service;
 
 import leshen.org.MPR5.car.Car;
+import leshen.org.MPR5.exception.CarAlreadyExistException;
+import leshen.org.MPR5.exception.CarNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
 
 @Component
 public class CarService {
@@ -19,10 +19,16 @@ public class CarService {
         carRepository.save(new Car("LPG","Ferrari","Yellow"));
     }
 
-    public Car getSeviceCar(long id){
+    public Car getSeviceCar(long id) throws CarNotFoundException {
+        if (!carRepository.existsCarById(id)){
+            throw new CarNotFoundException();
+        }
         return carRepository.findById(id);
     }
-    public void makeCarById(long id, Car car){
+    public void makeCarById(long id, Car car) throws CarAlreadyExistException{
+        if (carRepository.existsCarById(id)){
+            throw new CarAlreadyExistException();
+        }
         car.setId(id);
         carRepository.save(car);
     }
@@ -30,7 +36,7 @@ public class CarService {
       carRepository.deleteById(id);
     }
     public void updateCarById(long id, Car car){
-    //    carHashMap.replace(id, car);
+        carRepository.save(car);
     }
 
 }

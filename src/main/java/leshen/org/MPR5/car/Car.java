@@ -1,10 +1,22 @@
 package leshen.org.MPR5.car;
 
+import javax.annotation.processing.Generated;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Car {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String engine;
     private String brand;
     private String color;
+
+    public Car() {
+    }
 
     public Car(String engine, String brand, String color) {
         this.engine = engine;
