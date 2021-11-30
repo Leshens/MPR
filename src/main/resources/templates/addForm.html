@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Cars</title>
+</head>
+<body>
+<form action="=#" th:action="@{/cars/add}" th:object="${car}" method="post">
+    <table>
+        <tr>
+            <td><label>Engine</label></td>
+            <td><input type="text" th:field="${car.engine}"/>
+        </tr>
+        <tr>
+            <td><label>Brand</label></td>
+            <td><input type="text" th:field="${car.brand}"/>
+        </tr>
+        <tr>
+            <td><label>Color</label></td>
+            <td><input type="text" th:field="${car.color}"/>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Submit"/>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
